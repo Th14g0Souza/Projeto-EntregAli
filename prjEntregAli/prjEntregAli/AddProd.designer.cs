@@ -37,8 +37,11 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.txtDescrProd = new System.Windows.Forms.TextBox();
             this.lblDescricao = new System.Windows.Forms.Label();
+            this.btnVoltar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -166,11 +169,34 @@
             this.lblDescricao.Text = "Descrição";
             this.toolTip1.SetToolTip(this.lblDescricao, "Dois cliques na caixa de texto para selecionar o produto");
             // 
+            // btnVoltar
+            // 
+            this.btnVoltar.Font = new System.Drawing.Font("Century Gothic", 10.2F);
+            this.btnVoltar.Location = new System.Drawing.Point(630, 346);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(84, 32);
+            this.btnVoltar.TabIndex = 105;
+            this.btnVoltar.Text = "Voltar";
+            this.btnVoltar.UseVisualStyleBackColor = true;
+            this.btnVoltar.Click += new System.EventHandler(this.btnSair2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::prjEntregAli.Properties.Resources.logo1;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(72, 56);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 106;
+            this.pictureBox1.TabStop = false;
+            // 
             // AddProd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 496);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.txtDescrProd);
             this.Controls.Add(this.lblDescricao);
             this.Controls.Add(this.txtIdProdutoAddProd);
@@ -192,8 +218,11 @@
             this.Controls.SetChildIndex(this.txtIdProdutoAddProd, 0);
             this.Controls.SetChildIndex(this.lblDescricao, 0);
             this.Controls.SetChildIndex(this.txtDescrProd, 0);
+            this.Controls.SetChildIndex(this.btnVoltar, 0);
+            this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +237,7 @@
         private System.Windows.Forms.ToolTip toolTip1;
         public System.Windows.Forms.TextBox txtDescrProd;
         public System.Windows.Forms.Label lblDescricao;
+        private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

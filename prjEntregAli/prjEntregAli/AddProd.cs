@@ -80,13 +80,13 @@ namespace prjEntregAli
                 }
                 dt = new DataTable();
                 con = new ClasseConexao();
-                dt = con.executa_sql(" insert into tblDetalhePed  values (" + sg.Get_id() + ", " + txtIdProdutoAddProd.Text + "," + txtQuantAddProd.Text + ")");
+                dt = con.executa_sql("insert into tblDetalhePed  values (" + sg.Get_id() + ", " + txtIdProdutoAddProd.Text + "," + txtQuantAddProd.Text + ")");
                 sg.Set_prodadicionado("add");
 
                 MessageBox.Show("Material adicionado");
             } catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -154,6 +154,8 @@ namespace prjEntregAli
 
         private void txtIdProdutoAddProd_TextChanged(object sender, EventArgs e)
         {
+            if (txtIdProdutoAddProd.Text != "")
+            { 
             dt = new DataTable();
             con = new ClasseConexao();
             dt = con.executa_sql("select nome_material from tblMaterial where idMaterial = " + txtIdProdutoAddProd.Text);
@@ -165,6 +167,11 @@ namespace prjEntregAli
             else
             {
                 txtDescrProd.Text = dt.Rows[0]["nome_material"].ToString();
+            }
+
+            } else
+            {
+                txtDescrProd.Text = "";
             }
         }
     }

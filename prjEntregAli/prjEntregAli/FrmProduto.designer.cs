@@ -36,7 +36,7 @@
             this.lblMaterial = new System.Windows.Forms.Label();
             this.txtIDCategoria = new System.Windows.Forms.TextBox();
             this.txtIDForn = new System.Windows.Forms.TextBox();
-            this.nomeforn = new System.Windows.Forms.TextBox();
+            this.txtNomeForn = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.txtnumQtde = new System.Windows.Forms.NumericUpDown();
             this.lblQtde = new System.Windows.Forms.Label();
@@ -44,9 +44,11 @@
             this.cmbEstoque = new System.Windows.Forms.ComboBox();
             this.lblEstoque = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtnumQtde)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -121,28 +123,28 @@
             // txtMaterial
             // 
             this.txtMaterial.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaterial.Location = new System.Drawing.Point(265, 98);
+            this.txtMaterial.Location = new System.Drawing.Point(266, 121);
             this.txtMaterial.Name = "txtMaterial";
             this.txtMaterial.Size = new System.Drawing.Size(397, 27);
             this.txtMaterial.TabIndex = 58;
+            this.toolTip1.SetToolTip(this.txtMaterial, "Duplo clique para listar");
             this.txtMaterial.DoubleClick += new System.EventHandler(this.txtMaterial_DoubleClick);
             // 
             // lblIDForn
             // 
             this.lblIDForn.AutoSize = true;
             this.lblIDForn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIDForn.Location = new System.Drawing.Point(173, 216);
+            this.lblIDForn.Location = new System.Drawing.Point(174, 239);
             this.lblIDForn.Name = "lblIDForn";
             this.lblIDForn.Size = new System.Drawing.Size(124, 21);
             this.lblIDForn.TabIndex = 56;
             this.lblIDForn.Text = "ID Fornecedor:";
-            this.lblIDForn.Visible = false;
             // 
             // lblIdCategoria
             // 
             this.lblIdCategoria.AutoSize = true;
             this.lblIdCategoria.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdCategoria.Location = new System.Drawing.Point(173, 142);
+            this.lblIdCategoria.Location = new System.Drawing.Point(174, 165);
             this.lblIdCategoria.Name = "lblIdCategoria";
             this.lblIdCategoria.Size = new System.Drawing.Size(164, 21);
             this.lblIdCategoria.TabIndex = 54;
@@ -152,7 +154,7 @@
             // 
             this.lblMaterial.AutoSize = true;
             this.lblMaterial.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaterial.Location = new System.Drawing.Point(173, 98);
+            this.lblMaterial.Location = new System.Drawing.Point(174, 121);
             this.lblMaterial.Name = "lblMaterial";
             this.lblMaterial.Size = new System.Drawing.Size(79, 21);
             this.lblMaterial.TabIndex = 52;
@@ -161,7 +163,7 @@
             // txtIDCategoria
             // 
             this.txtIDCategoria.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIDCategoria.Location = new System.Drawing.Point(360, 139);
+            this.txtIDCategoria.Location = new System.Drawing.Point(361, 162);
             this.txtIDCategoria.Margin = new System.Windows.Forms.Padding(2);
             this.txtIDCategoria.Name = "txtIDCategoria";
             this.txtIDCategoria.Size = new System.Drawing.Size(57, 27);
@@ -172,29 +174,29 @@
             // txtIDForn
             // 
             this.txtIDForn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIDForn.Location = new System.Drawing.Point(302, 216);
+            this.txtIDForn.Location = new System.Drawing.Point(303, 239);
             this.txtIDForn.Margin = new System.Windows.Forms.Padding(2);
             this.txtIDForn.Name = "txtIDForn";
             this.txtIDForn.Size = new System.Drawing.Size(90, 27);
             this.txtIDForn.TabIndex = 62;
             this.toolTip1.SetToolTip(this.txtIDForn, "Dois cliques para buscar");
-            this.txtIDForn.Visible = false;
+            this.txtIDForn.DoubleClick += new System.EventHandler(this.txtIDForn_DoubleClick);
             // 
-            // nomeforn
+            // txtNomeForn
             // 
-            this.nomeforn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nomeforn.Location = new System.Drawing.Point(413, 216);
-            this.nomeforn.Margin = new System.Windows.Forms.Padding(2);
-            this.nomeforn.Name = "nomeforn";
-            this.nomeforn.Size = new System.Drawing.Size(249, 27);
-            this.nomeforn.TabIndex = 70;
-            this.toolTip1.SetToolTip(this.nomeforn, "Insira um ID antes");
-            this.nomeforn.Visible = false;
+            this.txtNomeForn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNomeForn.Location = new System.Drawing.Point(414, 239);
+            this.txtNomeForn.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNomeForn.Name = "txtNomeForn";
+            this.txtNomeForn.Size = new System.Drawing.Size(249, 27);
+            this.txtNomeForn.TabIndex = 70;
+            this.toolTip1.SetToolTip(this.txtNomeForn, "Dois cliques para buscar");
+            this.txtNomeForn.DoubleClick += new System.EventHandler(this.txtIDForn_DoubleClick);
             // 
             // txtnumQtde
             // 
             this.txtnumQtde.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.txtnumQtde.Location = new System.Drawing.Point(567, 179);
+            this.txtnumQtde.Location = new System.Drawing.Point(568, 202);
             this.txtnumQtde.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -208,7 +210,7 @@
             // 
             this.lblQtde.AutoSize = true;
             this.lblQtde.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtde.Location = new System.Drawing.Point(449, 179);
+            this.lblQtde.Location = new System.Drawing.Point(450, 202);
             this.lblQtde.Name = "lblQtde";
             this.lblQtde.Size = new System.Drawing.Size(112, 21);
             this.lblQtde.TabIndex = 72;
@@ -222,7 +224,7 @@
             this.txtNomecategoria.Items.AddRange(new object[] {
             "Eletrônica",
             "Mecânica"});
-            this.txtNomecategoria.Location = new System.Drawing.Point(434, 141);
+            this.txtNomecategoria.Location = new System.Drawing.Point(435, 164);
             this.txtNomecategoria.Name = "txtNomecategoria";
             this.txtNomecategoria.Size = new System.Drawing.Size(228, 25);
             this.txtNomecategoria.TabIndex = 74;
@@ -232,7 +234,7 @@
             this.cmbEstoque.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEstoque.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.cmbEstoque.FormattingEnabled = true;
-            this.cmbEstoque.Location = new System.Drawing.Point(296, 179);
+            this.cmbEstoque.Location = new System.Drawing.Point(297, 202);
             this.cmbEstoque.Name = "cmbEstoque";
             this.cmbEstoque.Size = new System.Drawing.Size(121, 25);
             this.cmbEstoque.TabIndex = 75;
@@ -241,7 +243,7 @@
             // 
             this.lblEstoque.AutoSize = true;
             this.lblEstoque.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstoque.Location = new System.Drawing.Point(213, 178);
+            this.lblEstoque.Location = new System.Drawing.Point(214, 201);
             this.lblEstoque.Name = "lblEstoque";
             this.lblEstoque.Size = new System.Drawing.Size(77, 21);
             this.lblEstoque.TabIndex = 76;
@@ -258,18 +260,29 @@
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::prjEntregAli.Properties.Resources.logo1;
+            this.pictureBox1.Location = new System.Drawing.Point(1, -4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(72, 56);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 78;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 496);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.lblEstoque);
             this.Controls.Add(this.cmbEstoque);
             this.Controls.Add(this.txtNomecategoria);
             this.Controls.Add(this.lblQtde);
             this.Controls.Add(this.txtnumQtde);
-            this.Controls.Add(this.nomeforn);
+            this.Controls.Add(this.txtNomeForn);
             this.Controls.Add(this.txtIDForn);
             this.Controls.Add(this.txtIDCategoria);
             this.Controls.Add(this.txtMaterial);
@@ -279,7 +292,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmProduto";
-            this.Text = "FrmProduto";
+            this.Text = "Produto";
             this.Activated += new System.EventHandler(this.FrmProduto_Activated);
             this.Load += new System.EventHandler(this.FrmProduto_Load);
             this.Controls.SetChildIndex(this.lblMaterial, 0);
@@ -292,16 +305,18 @@
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.btnSair2, 0);
-            this.Controls.SetChildIndex(this.nomeforn, 0);
+            this.Controls.SetChildIndex(this.txtNomeForn, 0);
             this.Controls.SetChildIndex(this.txtnumQtde, 0);
             this.Controls.SetChildIndex(this.lblQtde, 0);
             this.Controls.SetChildIndex(this.txtNomecategoria, 0);
             this.Controls.SetChildIndex(this.cmbEstoque, 0);
             this.Controls.SetChildIndex(this.lblEstoque, 0);
             this.Controls.SetChildIndex(this.btnVoltar, 0);
+            this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtnumQtde)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -314,7 +329,7 @@
         public System.Windows.Forms.Label lblMaterial;
         public System.Windows.Forms.TextBox txtIDCategoria;
         public System.Windows.Forms.TextBox txtIDForn;
-        public System.Windows.Forms.TextBox nomeforn;
+        public System.Windows.Forms.TextBox txtNomeForn;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.NumericUpDown txtnumQtde;
         public System.Windows.Forms.Label lblQtde;
@@ -322,5 +337,6 @@
         private System.Windows.Forms.ComboBox cmbEstoque;
         public System.Windows.Forms.Label lblEstoque;
         private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

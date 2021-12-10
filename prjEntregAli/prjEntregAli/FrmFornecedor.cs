@@ -46,6 +46,27 @@ namespace prjEntregAli
 
         }
 
+        private bool checarvazio()
+        {
+            bool valid = true;
+            foreach (Control c in this.Controls)
+            {
+                if (c is TextBox)
+                {
+                    TextBox textBox = c as TextBox;
+                    if (textBox.Text == string.Empty)
+                    {
+                        valid = true;
+                        break;
+                    }
+                    else
+                    {
+                        valid = false;
+                    }
+                }
+            }
+            return valid;
+        }
         private void Permissoes(int nivel)
         {
             if (nivel == 1)//gerente
@@ -66,6 +87,10 @@ namespace prjEntregAli
         {
             try
             {
+                if (checarvazio() == true)
+                {
+                    MessageBox.Show("Favor preencher todos os campos");
+                }
                 con = new ClasseConexao();
                 dt = new DataTable();
 
@@ -73,11 +98,12 @@ namespace prjEntregAli
                     + txtCNPJForn.Text +  "','" + txtEndForn.Text + "','"
                     + txtBairroForn.Text + "','" + txtCidadeForn.Text + "','" + txtTelForn.Text +
                      "','" + txtEmailForn.Text + 
-                     ")");
+                     "')");
+                MessageBox.Show("Cadastro realizado com sucesso");
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -85,7 +111,7 @@ namespace prjEntregAli
         {
             con = new ClasseConexao();
             dt = new DataTable();
-            dt = con.executa_sql("update tblFornecedor set nome = '" + txtNomeForn.Text + "', CNPJ = '"
+            dt = con.executa_sql("update tblFornecedor set nome_forn = '" + txtNomeForn.Text + "', CNPJ = '"
                 + txtCNPJForn.Text + "', telefone = '" + txtTelForn.Text 
                 + "', email = '" + txtEmailForn.Text + "', endereco = '" + txtEndForn.Text + "', bairro = '"
                 + txtBairroForn.Text + "', cidade = '" + txtCidadeForn.Text  + "' where id_Forn = " + id);
@@ -114,8 +140,8 @@ namespace prjEntregAli
                 dt = new DataTable();
 
                 dt = con.executa_sql("select * from tblFornecedor");
-                id = int.Parse((dt.Rows[pos]["nome"]).ToString());
-                txtNomeForn.Text = (dt.Rows[pos]["nome"]).ToString();
+                id = int.Parse((dt.Rows[pos]["id_forn"]).ToString());
+                txtNomeForn.Text = (dt.Rows[pos]["nome_forn"]).ToString();
                 txtCNPJForn.Text = (dt.Rows[pos]["CNPJ"]).ToString();
                 
                 txtTelForn.Text = (dt.Rows[pos]["telefone"]).ToString();
@@ -128,7 +154,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -143,7 +169,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -194,48 +220,34 @@ namespace prjEntregAli
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            /*String[] paramtblFuncionario = new String[17];
-            paramtblFuncionario[0] = "tblFuncionario";
-            paramtblFuncionario[1] = "id_func";
-            paramtblFuncionario[2] = "nome";
-            paramtblFuncionario[3] = "CPF";
-            paramtblFuncionario[4] = "RG";
-            paramtblFuncionario[5] = "bairro";
-            paramtblFuncionario[6] = "endereco";
-            paramtblFuncionario[7] = "cidade";
-            paramtblFuncionario[8] = "telefone";
-            paramtblFuncionario[9] = "celular";
-            paramtblFuncionario[10] = "datanasc";
-            paramtblFuncionario[11] = "email";
-            paramtblFuncionario[12] = "cargo";
-            paramtblFuncionario[13] = "salario";
-            paramtblFuncionario[14] = "usuario";
-            paramtblFuncionario[15] = "senha";
-            paramtblFuncionario[16] = "id_permissao";
-            sg.Set_ArrayParam(paramtblFuncionario);
+            String[] paramtblFornecedor = new String[9];
+            paramtblFornecedor[0] = "tblFornecedor";
+            paramtblFornecedor[1] = "id_forn";
+            paramtblFornecedor[2] = "nome_forn";
+            paramtblFornecedor[3] = "CNPJ";
+            paramtblFornecedor[4] = "endereco";
+            paramtblFornecedor[5] = "bairro";
+            paramtblFornecedor[6] = "cidade";
+            paramtblFornecedor[7] = "telefone";
+            paramtblFornecedor[8] = "email";
+            sg.Set_ArrayParam(paramtblFornecedor);
 
-            String[] combotblFuncionario = new String[16];
-            combotblFuncionario[0] = "Código Funcionário";
-            combotblFuncionario[1] = "Nome";
-            combotblFuncionario[2] = "CPF";
-            combotblFuncionario[3] = "RG";
-            combotblFuncionario[4] = "Bairro";
-            combotblFuncionario[5] = "Endereço";
-            combotblFuncionario[6] = "Cidade";
-            combotblFuncionario[7] = "Telefone";
-            combotblFuncionario[8] = "Celular";
-            combotblFuncionario[9] = "Data de Nascimento";
-            combotblFuncionario[10] = "E-mail";
-            combotblFuncionario[11] = "Cargo";
-            combotblFuncionario[12] = "Salário";
-            combotblFuncionario[13] = "Usuário";
-            combotblFuncionario[14] = "Senha";
-            combotblFuncionario[15] = "Código Permissão";
-            sg.Set_ArrayCombo(combotblFuncionario);
-
+            String[] combotblFornecedor = new String[8];
+            combotblFornecedor[0] = "Código Fornecedor";
+            combotblFornecedor[1] = "Nome/Razão";
+            combotblFornecedor[2] = "CNPJ";
+            combotblFornecedor[3] = "Endereço";
+            combotblFornecedor[4] = "Bairro";
+            combotblFornecedor[5] = "Cidade";
+            combotblFornecedor[6] = "Telefone";
+            combotblFornecedor[7] = "E-mail";
+            
+            sg.Set_ArrayCombo(combotblFornecedor);
+            
             LocalizarGeral lg = new LocalizarGeral();
-            lg.Show();
-            this.Hide();*/
+            lg.ShowDialog();
+
+      
         }
 
         private void FrmFornecedor_Load(object sender, EventArgs e)
@@ -243,10 +255,6 @@ namespace prjEntregAli
             Permissoes(int.Parse(sg.Getpermissao()));
         }
 
-        /*private void btnSair2_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }*/
 
         private void btnDeletar_Click(object sender, EventArgs e)
         {
@@ -259,7 +267,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -278,6 +286,36 @@ namespace prjEntregAli
         private void lblCPFCliente_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FrmFornecedor_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sg.Get_forn() != null && sg.Get_forn() != "")
+                {
+                    //txtMaterial.Text = sg.Get_forn();
+                    dt = new DataTable();
+                    //con = new ClasseConexao();
+                    //dt = con.executa_sql("select * from tblFoernecedor where id_forn = " + sg.Get_forn() + "");
+                    //txtNomeForn.Text = dt.Rows[0][0].ToString();
+                    //txtIDCategoria.Text = sg.Get_cat();
+                    //cmbEstoque.SelectedItem = sg.Get_Estoque(); 
+                }
+
+
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
+            }
+        }
+
+        private void btnSair2_Click(object sender, EventArgs e)
+        {
+            FrmEstoque est = new FrmEstoque();
+            est.Show();
+            this.Close();
         }
     }
 }

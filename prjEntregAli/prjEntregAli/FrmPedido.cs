@@ -58,7 +58,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -78,7 +78,7 @@ namespace prjEntregAli
                 }
                 else
                 {
-                    dt = con.executa_sql("insert into tblPedido values (" + txtIdCliPed.Text + ", " + txtIdFuncPed.Text + ", '" + comboStatus.Text + "', '" + txtDataPed.Text + "','" + txtDataEntrega.Text + "')");
+                    dt = con.executa_sql("insert into tblPedido values (" + txtIdCliPed.Text + ", " + txtIdFuncPed.Text + ", '" + comboStatus.Text + "', '" + txtDataPed.Value.ToString("yyyyMMdd") + "','" + txtDataEntrega.Value.ToString("yyyyMMdd") + "')");
                     dt = new DataTable();
                     con = new ClasseConexao();
                     dt = con.executa_sql(" select * from tblPedido");
@@ -91,7 +91,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -125,7 +125,7 @@ namespace prjEntregAli
 
                     con2 = new ClasseConexao();
                     dt2 = new DataTable();
-                    dt2 = con2.executa_sql("select tblDetalhePed.idMaterial, tblMaterial.nome_material as 'Código Material', qtde as 'Quantidade' from tblDetalhePed, tblMaterial where id_ped = " 
+                    dt2 = con2.executa_sql("select tblDetalhePed.idMaterial, tblMaterial.nome_material as 'Código Material', qtde as 'Quantidade' from tblDetalhePed, tblMaterial where id_ped = "
                         + boragrid + " and tblMaterial.idMaterial = tblDetalhePed.idMaterial");
                     dataProduto.DataSource = dt2;
 
@@ -149,7 +149,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -158,16 +158,16 @@ namespace prjEntregAli
         {
             try
             {
-                if (comboStatus.Text == "Faturado") 
+                if (comboStatus.Text == "Faturado")
                 {
                     MessageBox.Show("você não pode mais adicionar Produtos");
                 }
                 else
                 {
-                    
+
                     dt = new DataTable();
                     con = new ClasseConexao();
-                    dt = con.executa_sql("select id_ped from tblPedido where id_cli = " + txtIdCliPed.Text + " and id_func = " + txtIdFuncPed.Text + " and ped_status = '" + comboStatus.Text + "' and dataped = '" + txtDataPed.Text + "' and dataentrega = '" + txtDataEntrega.Text + "'");
+                    dt = con.executa_sql("select id_ped from tblPedido where id_cli = " + txtIdCliPed.Text + " and id_func = " + txtIdFuncPed.Text + " and ped_status = '" + comboStatus.Text + "' and dataped = '" + txtDataPed.Value.ToString("yyyyMMdd") + "' and dataentrega = '" + txtDataEntrega.Value.ToString("yyyyMMdd") + "'");
                     sg.Set_id((dt.Rows[0]["id_ped"]).ToString());
                     AddProd aprod = new AddProd();
                     aprod.ShowDialog();
@@ -176,7 +176,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
 
         }
@@ -226,7 +226,7 @@ namespace prjEntregAli
             {
                 dt = new DataTable();
                 con = new ClasseConexao();
-                dt = con.executa_sql("select  id_ped from tblPedido where id_cli = " + txtIdCliPed.Text + " and id_func = " + txtIdFuncPed.Text + " and ped_status = '" + comboStatus.Text + "' and dataped = '" + txtDataPed.Text + "' and dataentrega = '" + txtDataEntrega.Text + "'");
+                dt = con.executa_sql("select  id_ped from tblPedido where id_cli = " + txtIdCliPed.Text + " and id_func = " + txtIdFuncPed.Text + " and ped_status = '" + comboStatus.Text + "' and dataped = '" + txtDataPed.Value.ToString("yyyyMMdd") + "' and dataentrega = '" + txtDataPed.Value.ToString("yyyyMMdd") + "'");
                 sg.Set_id((dt.Rows[0][0]).ToString());
                 dt = new DataTable();
                 con = new ClasseConexao();
@@ -239,7 +239,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -253,8 +253,8 @@ namespace prjEntregAli
 
                     dt = new DataTable();
                     con = new ClasseConexao();
-                    dt = con.executa_sql("update tblPedido set dataped = '" + txtDataPed.Text + "',id_cli = " 
-                        + txtIdCliPed.Text + ",id_func = " + txtIdFuncPed.Text + ", dataentrega = '" 
+                    dt = con.executa_sql("update tblPedido set dataped = '" + txtDataPed.Text + "',id_cli = "
+                        + txtIdCliPed.Text + ",id_func = " + txtIdFuncPed.Text + ", dataentrega = '"
                         + txtDataEntrega.Text + "',  ped_status = '" + comboStatus.Text +
                         "',   where id_ped = "
                         + sg.Get_idalteerar() + "");
@@ -270,7 +270,7 @@ namespace prjEntregAli
                 {
                     dt = new DataTable();
                     con = new ClasseConexao();
-                    dt = con.executa_sql("update tblPedido set dataped = '" + txtDataPed.Text + "',id_cli = " 
+                    dt = con.executa_sql("update tblPedido set dataped = '" + txtDataPed.Text + "',id_cli = "
                         + txtIdCliPed.Text + ",id_func = " + txtIdFuncPed.Text + ", dataentrega = '"
                         + txtDataEntrega.Text + "',  ped_status = '" + comboStatus.Text +
                         "' where id_ped = " + boragrid + "");
@@ -287,7 +287,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -376,7 +376,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -446,15 +446,17 @@ namespace prjEntregAli
 
         private void FrmPedido_Load(object sender, EventArgs e)
         {
-            dt = new DataTable();
-            con = new ClasseConexao();
-            dt = con.executa_sql("select idMaterial as 'Código Material', qtde as Quantidade from tblDetalhePed where id_ped = " + boragrid + "  and id_prod != '' ");
-            dataProduto.DataSource = dt;
-
+            if (boragrid != null)
+            {
+                dt = new DataTable();
+                con = new ClasseConexao();
+                dt = con.executa_sql("select idMaterial as 'Código Material', qtde as Quantidade from tblDetalhePed where id_ped = " + boragrid + "");
+                dataProduto.DataSource = dt;
+            }
             dt = new DataTable();
             con = new ClasseConexao();
             dt = con.executa_sql("select id_cli from tblCliente");
-            
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 txtIdCliPed.Items.Add(dt.Rows[i]["id_cli"]);
@@ -534,9 +536,50 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
-        
+
+        }
+
+        private void dataProduto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+                if (comboStatus.Text != "Faturado")
+                {
+                    string iddel = dataProduto.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+                    var confirmResult = MessageBox.Show("Tem certeza que deseja deletar??",
+                                             "Confirmação",
+                                             MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        dt = new DataTable();
+                        con = new ClasseConexao();
+                        dt = con.executa_sql("select id_ped from tblPedido where id_cli = " + txtIdCliPed.Text + " and id_func = " + txtIdFuncPed.Text + " and ped_status = '" + comboStatus.Text + "' and dataped = '" + txtDataPed.Value.ToString("yyyyMMdd") + "' and dataentrega = '" + txtDataEntrega.Value.ToString("yyyyMMdd") + "'");
+                        sg.Set_id((dt.Rows[0][0]).ToString());
+                        dt = new DataTable();
+                        con = new ClasseConexao();
+                        dt = con.executa_sql("delete from tblDetalhePed where id_ped = " + sg.Get_id() + " and idMaterial = " + iddel);
+                        MessageBox.Show("Deletado com sucesso");
+                        MostrarPedido(pos);
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    throw new Exception("Itens só podem ser deletados de pedidos não faturados");
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro: " + erro.Message);
+            }
         }
     }
 }
+

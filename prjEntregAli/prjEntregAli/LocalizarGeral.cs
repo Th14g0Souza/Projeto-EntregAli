@@ -30,11 +30,11 @@ namespace prjEntregAli //     NÃO UTILIZADO -----------------------------------
         private void formataGrid()
         {
             //permite personalizar o grid
-            GridLocalizar.AutoGenerateColumns = false;
-            GridLocalizar.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
-            GridLocalizar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            //  GridLocalizar.AutoGenerateColumns = false;
+            //  GridLocalizar.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            //  GridLocalizar.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             //altera a cor das linhas alternadas no grid
-            GridLocalizar.RowsDefaultCellStyle.BackColor = Color.LightBlue;
+            //  GridLocalizar.RowsDefaultCellStyle.BackColor = Color.LightBlue;
 
             //altera o nome das colunas
             //GridLocalizar.Columns[0].HeaderText = "ID";
@@ -42,20 +42,20 @@ namespace prjEntregAli //     NÃO UTILIZADO -----------------------------------
             //GridLocalizar.Columns[2].HeaderText = "CPF";
             //GridLocalizar.Columns[3].HeaderText = "Endereco";
             //grid.Columns[3].HeaderText = "PREÇO UNITÁRIO";
-            GridLocalizar.Columns[0].Width = 20;
+            //  GridLocalizar.Columns[0].Width = 20;
             //GridLocalizar.Columns[1].Width = 150;
             //GridLocalizar.Columns[2].Width = 80;
             //GridLocalizar.Columns[2].Width = 150;
             //formata a coluna para moeda (currency)
             //grid.Columns[3].DefaultCellStyle.Format = "c";
             //ao clicar, seleciona a linha inteira
-            GridLocalizar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //    GridLocalizar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //não permite seleção de multiplas linhas    
-            GridLocalizar.MultiSelect = false;
+            //    GridLocalizar.MultiSelect = false;
             // exibe vazio no lugar de null
             //dataGridView1.DefaultCellStyle.NullValue = "";
             //Expande a célula automáticamente
-            GridLocalizar.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            //  GridLocalizar.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             //alinha à direita os campos moeda
             //grid.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
@@ -80,15 +80,15 @@ namespace prjEntregAli //     NÃO UTILIZADO -----------------------------------
 
                 }
 
-                if (tb.Get_formularioAddServ() == "AddServ")
-                {
-                    con = new ClasseConexao();
-                    dt = new DataTable();
-                    dt = con.executa_sql("select * from " + tb.Get_ArrayParam()[0] + " where  porte  = '" + tb.Get_Porte() + "' ");
-                    GridLocalizar.DataSource = dt;
-                }
+                //if (tb.Get_formularioAddServ() == "AddServ")
+                //{
+                //    con = new ClasseConexao();
+                //    dt = new DataTable();
+                //    dt = con.executa_sql("select * from " + tb.Get_ArrayParam()[0] + " where  porte  = '" + tb.Get_Porte() + "' ");
+                //    GridLocalizar.DataSource = dt;
+                //}
 
-                else
+                //else
                 {
                     con = new ClasseConexao();
                     dt = new DataTable();
@@ -105,7 +105,7 @@ namespace prjEntregAli //     NÃO UTILIZADO -----------------------------------
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -126,13 +126,13 @@ namespace prjEntregAli //     NÃO UTILIZADO -----------------------------------
                 {
                     con = new ClasseConexao();
                     dt = new DataTable();
-                    dt = con.executa_sql("select * from " + tb.Get_ArrayParam()[0] + " where  " + cmbDados + "  = '" + txtLocalizar.Text + "' ");
+                    dt = con.executa_sql("select * from " + tb.Get_ArrayParam()[0] + " where  " + cmbDados + "  like '" + txtLocalizar.Text + "%'");
                     GridLocalizar.DataSource = dt;
                 }
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -144,7 +144,7 @@ namespace prjEntregAli //     NÃO UTILIZADO -----------------------------------
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -153,7 +153,7 @@ namespace prjEntregAli //     NÃO UTILIZADO -----------------------------------
             Pesquisar();
         }
 
-        private void GridLocalizar_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void GridLocalizar_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -224,34 +224,9 @@ namespace prjEntregAli //     NÃO UTILIZADO -----------------------------------
 
                 }
 
-                else if (tb.Get_ArrayParam()[0] == "tblServico")
-                {
+                
 
-                    //FrmServico Servic = new FrmServico();
-                    //Servic.txtServ.Text = (GridLocalizar.Rows[e.RowIndex].Cells[1].Value.ToString());
-                    /*Servic.txtPorteServ.Text = (GridLocalizar.Rows[e.RowIndex].Cells[2].Value.ToString());
-                    Servic.txtValServ.Text = (GridLocalizar.Rows[e.RowIndex].Cells[3].Value.ToString());
-                    Servic.Show();*/
-                    this.Close();
-
-                }
-
-                else if (tb.Get_ArrayParam()[0] == "tblPet")
-                {
-                    //FrmPet Pet = new FrmPet();
-                    /*Pet.txtIDCliPet.Text = (GridLocalizar.Rows[e.RowIndex].Cells[1].Value.ToString());
-                    Pet.txtNomePet.Text = (GridLocalizar.Rows[e.RowIndex].Cells[2].Value.ToString());
-                    Pet.txtRGAPet.Text = (GridLocalizar.Rows[e.RowIndex].Cells[3].Value.ToString());
-                    Pet.txtRacaPet.Text = (GridLocalizar.Rows[e.RowIndex].Cells[4].Value.ToString());
-                    Pet.txtSexoPet.Text = (GridLocalizar.Rows[e.RowIndex].Cells[5].Value.ToString());
-                    Pet.txtPortePet.Text = (GridLocalizar.Rows[e.RowIndex].Cells[6].Value.ToString());
-                    con = new ClasseConexao();
-                    dt = new DataTable();
-                    dt = con.executa_sql("select nome from tblCliente where  id_cli = " + (GridLocalizar.Rows[e.RowIndex].Cells[1].Value.ToString()) + "  ");
-                    Pet.txtnomeCli.Text = dt.Rows[0][0].ToString();
-                    Pet.Show();*/
-                    this.Close();
-                }
+                
                 else if (tb.Get_ArrayParam()[0] == "tblFuncionario")
                 {
                     FrmFuncionario Func = new FrmFuncionario();
@@ -302,24 +277,49 @@ namespace prjEntregAli //     NÃO UTILIZADO -----------------------------------
                 else if (tb.Get_ArrayParam()[0] == "tblFornecedor")
                 {
                     //FrmFornecedor forn = new FrmFornecedor();
-                    /*forn.txtRazao.Text = (GridLocalizar.Rows[e.RowIndex].Cells[1].Value.ToString()); ;
-                    forn.txtCidadeForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[2].Value.ToString()); ;
-                    forn.txtEstadoForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[3].Value.ToString()); ;
-                    forn.txtPaisForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[4].Value.ToString()); ;
-                    forn.txtBairroForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[5].Value.ToString()); ;
-                    forn.txtEndForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[6].Value.ToString()); ;
-                    forn.txtNumCli.Text = (GridLocalizar.Rows[e.RowIndex].Cells[7].Value.ToString()); ;
-                    forn.txtTelefoneCli.Text = (GridLocalizar.Rows[e.RowIndex].Cells[8].Value.ToString()); ;
-                    forn.txtEmailForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[9].Value.ToString()); ;
-                    forn.txtResponsavel.Text = (GridLocalizar.Rows[e.RowIndex].Cells[10].Value.ToString()); ;
-                    forn.txtCNPJ.Text = (GridLocalizar.Rows[e.RowIndex].Cells[11].Value.ToString()); ;
-                    forn.Show();*/
+                    tb.Set_forn(GridLocalizar.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    //forn.txtNomeForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    //forn.txtCNPJForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    //forn.txtEndForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    //forn.txtBairroForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    //forn.txtCidadeForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[4].Value.ToString());
+                    //forn.txtTelForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[5].Value.ToString());
+                    //forn.txtEmailForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[6].Value.ToString());
+                    //forn.txtNumCli.Text = (GridLocalizar.Rows[e.RowIndex].Cells[7].Value.ToString()); ;
+                    //forn.txtTelForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[8].Value.ToString()); ;
+                    //forn.txtEmailForn.Text = (GridLocalizar.Rows[e.RowIndex].Cells[9].Value.ToString()); ;
+                    //forn.txtResponsavel.Text = (GridLocalizar.Rows[e.RowIndex].Cells[10].Value.ToString()); ;
+                     ;
+                    //forn.Show();
                     this.Close();
+
+                    //try
+                    //{
+                    //    if (tb.Get_AddProd() == "AddProd")
+                    //    {
+                    //        tb.Set_prod(GridEstoque.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+                    //        tb.Set_AddProd("");
+                    //        this.Close();
+                    //    }
+                    //    else if (tb.Get_AddProd() == "Add")
+                    //    {
+                    //        tb.Set_prod(GridEstoque.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    //        tb.Set_cat(GridEstoque.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    //        tb.Set_Estoque(txtEstoqueAtivo.Text);
+                    //        tb.Set_AddProd("");
+                    //        this.Close();
+                    //    }
+                    //}
+                    //catch (Exception erro)
+                    //{
+                    //    MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                    //}
                 }
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -337,7 +337,7 @@ namespace prjEntregAli //     NÃO UTILIZADO -----------------------------------
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 

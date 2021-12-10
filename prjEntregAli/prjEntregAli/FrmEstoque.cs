@@ -28,7 +28,7 @@ namespace prjEntregAli
             if (nivel == 1)//gerente
             {
                 btnFuncionario.Enabled = true;
-                //btnFornecedor.Enabled = true;
+                btnFornecedor.Enabled = true;
                 btnMaterial.Enabled = true;
                 btnCliente.Enabled = true;
 
@@ -36,17 +36,18 @@ namespace prjEntregAli
             if (nivel == 2)//colaborador/comprador
             {
                 btnFuncionario.Enabled = false;
-                //btnFornecedor.Enabled = true;
+                btnFornecedor.Enabled = false;
                 btnMaterial.Enabled = true;
                 btnCliente.Enabled = true;
             }
-            if (nivel == 3)//funcionário
-            {
-                btnFuncionario.Enabled = false;
-                //btnFornecedor.Enabled = false;
-                btnMaterial.Enabled = false;
-                btnCliente.Enabled = true;
-            }
+                if (nivel == 3)//funcionário
+                {
+                    btnFuncionario.Enabled = false;
+                    btnFornecedor.Enabled = false;
+                    btnMaterial.Enabled = false;
+                    btnCliente.Enabled = true;
+                }
+            
         }
 
         protected override bool ProcessDialogKey(Keys keyData)
@@ -93,7 +94,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação." + erro);
+                MessageBox.Show("Não foi possível realizar a operação." + erro.Message);
             }
         }
 
@@ -105,7 +106,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -116,6 +117,7 @@ namespace prjEntregAli
 
         private void FrmEstoque_Load(object sender, EventArgs e)
         {
+            Permissoes(int.Parse(tb.Getpermissao()));
             try
             {
                 if (tb.Get_AddProd() == "AddProd" || tb.Get_AddProd() == "Add")
@@ -126,7 +128,7 @@ namespace prjEntregAli
                     btnPedido.Enabled = false;
                 }
 
-                    DataTable dt = new DataTable();
+                DataTable dt = new DataTable();
                 ClasseConexao con = new ClasseConexao();
 
                 txtTipoMat.SelectedItem = null;
@@ -145,7 +147,7 @@ namespace prjEntregAli
                     ClasseConexao con2 = new ClasseConexao();
                     int id = int.Parse(dt.Rows[i]["idEstoque"].ToString());
                     //int qt = int.Parse(dt.Rows[i]["quant_total"].ToString());
-                    dt2 = con2.executa_sql("update tblEstoque set quant_total = (select  sum(quantidade) from tblMaterial where idEstoque = " + id + ") where idEstoque = " + id);
+                    dt2 = con2.executa_sql("update tblEstoque set quant_total = (select  COALESCE(sum(quantidade),0) from tblMaterial where idEstoque = " + id + ") where idEstoque = " + id);
                 }
 
                 dt = new DataTable();
@@ -174,19 +176,21 @@ namespace prjEntregAli
                     txtEstoqueAtivo.SelectedText = "Estoque Z";
                 }
 
-                String[] paramtblMaterial = new String[5];
+                String[] paramtblMaterial = new String[6];
                 paramtblMaterial[0] = "tblMaterial";
                 paramtblMaterial[1] = "idMaterial";
                 paramtblMaterial[2] = "nome_material";
                 paramtblMaterial[3] = "quantidade";
                 paramtblMaterial[4] = "id_categoria";
+                paramtblMaterial[5] = "id_forn";
                 tb.Set_ArrayParam(paramtblMaterial);
 
-                String[] combotblMaterial = new String[4];
+                String[] combotblMaterial = new String[5];
                 combotblMaterial[0] = "Código Material";
                 combotblMaterial[1] = "Material";
                 combotblMaterial[2] = "Quantidade";
                 combotblMaterial[3] = "ID Categoria";
+                combotblMaterial[4] = "ID Fornecedor";
                 tb.Set_ArrayCombo(combotblMaterial);
 
                 for (i = 0; i < tb.Get_ArrayCombo().Length; i++)
@@ -201,12 +205,12 @@ namespace prjEntregAli
                 dt = new DataTable();
                 con = new ClasseConexao();
 
-                dt = con.executa_sql("Select idMaterial as 'ID',nome_material as 'Descrição', quantidade as 'Quantidade', id_categoria as 'ID Categoria' from tblMaterial");
+                dt = con.executa_sql("Select idMaterial as 'ID',nome_material as 'Descrição', quantidade as 'Quantidade', id_categoria as 'ID Categoria', id_forn as 'ID Fornecedor' from tblMaterial");
                 GridEstoque.DataSource = dt;
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -232,7 +236,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
 
         }
@@ -264,5 +268,30 @@ namespace prjEntregAli
             this.Hide();
             fc.Show();
         }
-    } 
+
+        private void btnFornecedor_Click(object sender, EventArgs e)
+        {
+            FrmFornecedor ffn = new FrmFornecedor();
+            this.Hide();
+            ffn.Show();
+        }
+
+        private void FrmEstoque_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        /*    var confirmResult = MessageBox.Show(            
+                "Tem certeza que deseja sair?",
+                "Saindo",
+                MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                Login log = new Login();
+            
+                log.Show();
+            }
+            else
+            {
+                e.Cancel = true;
+            }*/
+        }
+    }
 }

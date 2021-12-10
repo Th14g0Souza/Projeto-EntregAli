@@ -73,7 +73,8 @@ C:\Users\THIAG\Desktop\prjEntregAli_v2\prjEntregAli\obj\Debug\prjEntregAli.exe.m
 C:\Users\THIAG\Desktop\prjEntregAli_v2\prjEntregAli\obj\Debug\prjEntregAli.application
 C:\Users\THIAG\Desktop\prjEntregAli_v2\prjEntregAli\obj\Debug\prjEntregAli.exe
 C:\Users\THIAG\Desktop\prjEntregAli_v2\prjEntregAli\obj\Debug\prjEntregAli.pdb
-C:\Users\THIAG\Desktop\prjEntregAli_v2\prjEntregAli\obj\Debug\prjEntregAli.csprojAssemblyReference.cache
 C:\Users\THIAG\Desktop\prjEntregAli_v2\prjEntregAli\bin\Debug\System.Data.SqlClient.dll
 C:\Users\THIAG\Desktop\prjEntregAli_v2\prjEntregAli\bin\Debug\System.Data.SqlClient.xml
 C:\Users\THIAG\Desktop\prjEntregAli_v2\prjEntregAli\obj\Debug\prjEntregAli.csproj.CopyComplete
+C:\Users\THIAG\Desktop\prjEntregAli_v2\prjEntregAli\obj\Debug\prjEntregAli.csproj.AssemblyReference.cache
+C:\Users\THIAG\Desktop\prjEntregAli_v2\prjEntregAli\obj\Debug\prjEntregAli.FrmFornecedor.resources

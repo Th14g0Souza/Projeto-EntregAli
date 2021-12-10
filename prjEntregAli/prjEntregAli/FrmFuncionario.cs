@@ -78,7 +78,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -121,7 +121,7 @@ namespace prjEntregAli
                 dt = new DataTable();
 
                 dt = con.executa_sql("select * from tblFuncionario");
-                id = int.Parse((dt.Rows[pos]["nome"]).ToString());
+                id = int.Parse((dt.Rows[pos]["id_func"]).ToString());
                 txtNomeFunc.Text = (dt.Rows[pos]["nome"]).ToString();
                 txtCPFFunc.Text = (dt.Rows[pos]["CPF"]).ToString();
                 txtRGFunc.Text = (dt.Rows[pos]["RG"]).ToString();
@@ -136,10 +136,27 @@ namespace prjEntregAli
                 txtSenha.Text = (dt.Rows[pos]["senha"]).ToString();
                 txtPermissao.Text = (dt.Rows[pos]["id_permissao"]).ToString();
                 txtCargo.Text = (dt.Rows[pos]["cargo"]).ToString();
+                
+                txtNomeFunc.ReadOnly = true;
+                txtCPFFunc.ReadOnly = true;
+                txtRGFunc.ReadOnly = true;
+                txtDataNascFunc.Enabled = false;
+                txtTelFunc.ReadOnly = true;
+                txtCelFunc.ReadOnly = true;
+                txtEndFunc.ReadOnly = true;
+                txtBairroFunc.ReadOnly = true;
+                txtCidadeFunc.ReadOnly = true;
+                txtEmailFunc.ReadOnly = true;
+                txtUsuario.ReadOnly = true;
+                txtSenha.ReadOnly = true;
+                txtPermissao.ReadOnly = true;
+                txtCargo.ReadOnly = true; 
+
+
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -154,7 +171,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -201,6 +218,20 @@ namespace prjEntregAli
         private void btnLimparCampos_Click(object sender, EventArgs e)
         {
             LimparFunc();
+            txtNomeFunc.ReadOnly = false;
+            txtCPFFunc.ReadOnly = false;
+            txtRGFunc.ReadOnly = false;
+            txtDataNascFunc.Enabled = true;
+            txtTelFunc.ReadOnly = false;
+            txtCelFunc.ReadOnly = false;
+            txtEndFunc.ReadOnly = false;
+            txtBairroFunc.ReadOnly = false;
+            txtCidadeFunc.ReadOnly = false;
+            txtEmailFunc.ReadOnly = false;
+            txtUsuario.ReadOnly = false;
+            txtSenha.ReadOnly = false;
+            txtPermissao.ReadOnly = false;
+            txtCargo.ReadOnly = false;
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
@@ -254,11 +285,6 @@ namespace prjEntregAli
             Permissoes(int.Parse(sg.Getpermissao()));
         }
 
-        /*private void btnSair2_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }*/
-
         private void btnDeletar_Click(object sender, EventArgs e)
         {
             try
@@ -270,7 +296,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -283,7 +309,50 @@ namespace prjEntregAli
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            AlterarFunc();
+            if (btnAlterar.Text == "Alterar")
+            {
+                txtNomeFunc.ReadOnly = false;
+                txtCPFFunc.ReadOnly = false;
+                txtRGFunc.ReadOnly = false;
+                txtDataNascFunc.Enabled = true;
+                txtTelFunc.ReadOnly = false;
+                txtCelFunc.ReadOnly = false;
+                txtEndFunc.ReadOnly = false;
+                txtBairroFunc.ReadOnly = false;
+                txtCidadeFunc.ReadOnly = false;
+                txtEmailFunc.ReadOnly = false;
+                txtUsuario.ReadOnly = false;
+                txtSenha.ReadOnly = false;
+                txtPermissao.ReadOnly = false;
+                txtCargo.ReadOnly = false;
+                btnAlterar.Text = "Confirmar";
+            }
+            else
+            {
+                AlterarFunc();
+                btnAlterar.Text = "Alterar";
+                txtNomeFunc.ReadOnly = true;
+                txtCPFFunc.ReadOnly = true;
+                txtRGFunc.ReadOnly = true;
+                txtDataNascFunc.Enabled = false;
+                txtTelFunc.ReadOnly = true;
+                txtCelFunc.ReadOnly = true;
+                txtEndFunc.ReadOnly = true;
+                txtBairroFunc.ReadOnly = true;
+                txtCidadeFunc.ReadOnly = true;
+                txtEmailFunc.ReadOnly = true;
+                txtUsuario.ReadOnly = true;
+                txtSenha.ReadOnly = true;
+                txtPermissao.ReadOnly = true;
+                txtCargo.ReadOnly = true;
+            }
+        }
+
+        private void btnSair2_Click(object sender, EventArgs e)
+        {
+            FrmEstoque est = new FrmEstoque();
+            est.Show();
+            this.Close();
         }
     }
 }

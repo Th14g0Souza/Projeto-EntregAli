@@ -67,7 +67,7 @@
             this.GridLocalizar.Name = "GridLocalizar";
             this.GridLocalizar.Size = new System.Drawing.Size(402, 171);
             this.GridLocalizar.TabIndex = 5;
-            this.GridLocalizar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridLocalizar_CellClick);
+            this.GridLocalizar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridLocalizar_CellDoubleClick);
             // 
             // comboLocalizar
             // 
@@ -130,7 +130,7 @@
             this.Name = "LocalizarGeral";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Localizar  Geral";
+            this.Text = "Localizar";
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LocalizarGeral_FormClosed);
             this.Load += new System.EventHandler(this.LocalizarGeral_Load);

@@ -46,8 +46,10 @@
             this.lblTelefoneCliente = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -105,14 +107,18 @@
             this.label1.Size = new System.Drawing.Size(241, 23);
             this.label1.Text = "CADASTRO FORNECEDOR";
             // 
+            // btnSair2
+            // 
+            this.btnSair2.Click += new System.EventHandler(this.btnSair2_Click);
+            // 
             // txtCNPJForn
             // 
             this.txtCNPJForn.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCNPJForn.Location = new System.Drawing.Point(294, 101);
             this.txtCNPJForn.Mask = "00,000,000/0000-00";
             this.txtCNPJForn.Name = "txtCNPJForn";
-            this.txtCNPJForn.Size = new System.Drawing.Size(126, 26);
-            this.txtCNPJForn.TabIndex = 69;
+            this.txtCNPJForn.Size = new System.Drawing.Size(151, 26);
+            this.txtCNPJForn.TabIndex = 61;
             // 
             // txtNomeForn
             // 
@@ -149,7 +155,7 @@
             this.txtTelForn.Location = new System.Drawing.Point(294, 185);
             this.txtTelForn.Name = "txtTelForn";
             this.txtTelForn.Size = new System.Drawing.Size(121, 26);
-            this.txtTelForn.TabIndex = 101;
+            this.txtTelForn.TabIndex = 64;
             // 
             // txtEmailForn
             // 
@@ -157,7 +163,7 @@
             this.txtEmailForn.Location = new System.Drawing.Point(294, 142);
             this.txtEmailForn.Name = "txtEmailForn";
             this.txtEmailForn.Size = new System.Drawing.Size(333, 26);
-            this.txtEmailForn.TabIndex = 100;
+            this.txtEmailForn.TabIndex = 63;
             // 
             // lblEmail
             // 
@@ -175,7 +181,7 @@
             this.txtCidadeForn.Location = new System.Drawing.Point(496, 276);
             this.txtCidadeForn.Name = "txtCidadeForn";
             this.txtCidadeForn.Size = new System.Drawing.Size(147, 26);
-            this.txtCidadeForn.TabIndex = 98;
+            this.txtCidadeForn.TabIndex = 67;
             // 
             // lblCidadeCliente
             // 
@@ -193,7 +199,7 @@
             this.txtBairroForn.Location = new System.Drawing.Point(294, 276);
             this.txtBairroForn.Name = "txtBairroForn";
             this.txtBairroForn.Size = new System.Drawing.Size(111, 26);
-            this.txtBairroForn.TabIndex = 96;
+            this.txtBairroForn.TabIndex = 66;
             // 
             // txtEndForn
             // 
@@ -201,7 +207,7 @@
             this.txtEndForn.Location = new System.Drawing.Point(294, 229);
             this.txtEndForn.Name = "txtEndForn";
             this.txtEndForn.Size = new System.Drawing.Size(309, 26);
-            this.txtEndForn.TabIndex = 95;
+            this.txtEndForn.TabIndex = 65;
             // 
             // lblBairro
             // 
@@ -244,11 +250,22 @@
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::prjEntregAli.Properties.Resources.logo1;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(72, 56);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 105;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmFornecedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 496);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.txtTelForn);
             this.Controls.Add(this.txtEmailForn);
@@ -268,6 +285,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmFornecedor";
             this.Text = "FrmFornecedor";
+            this.Activated += new System.EventHandler(this.FrmFornecedor_Activated);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
@@ -287,8 +305,10 @@
             this.Controls.SetChildIndex(this.txtEmailForn, 0);
             this.Controls.SetChildIndex(this.txtTelForn, 0);
             this.Controls.SetChildIndex(this.btnVoltar, 0);
+            this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,5 +331,6 @@
         public System.Windows.Forms.Label lblTelefoneCliente;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -179,14 +179,14 @@ namespace prjEntregAli
             // 
             // btnFornecedor
             // 
-            this.btnFornecedor.Enabled = false;
             this.btnFornecedor.Font = new System.Drawing.Font("Century Gothic", 8.5F);
             this.btnFornecedor.Location = new System.Drawing.Point(637, 37);
             this.btnFornecedor.Name = "btnFornecedor";
             this.btnFornecedor.Size = new System.Drawing.Size(151, 43);
             this.btnFornecedor.TabIndex = 36;
-            this.btnFornecedor.Text = "Cadastrar Fornecedor (em breve)";
+            this.btnFornecedor.Text = "Cadastrar Fornecedor";
             this.btnFornecedor.UseVisualStyleBackColor = true;
+            this.btnFornecedor.Click += new System.EventHandler(this.btnFornecedor_Click);
             // 
             // btnFuncionario
             // 
@@ -243,7 +243,8 @@ namespace prjEntregAli
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmEstoque";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmEstoque";
+            this.Text = "Estoque";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmEstoque_FormClosing);
             this.Load += new System.EventHandler(this.FrmEstoque_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GridEstoque)).EndInit();
             this.ResumeLayout(false);

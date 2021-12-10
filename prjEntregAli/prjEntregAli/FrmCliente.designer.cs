@@ -47,12 +47,12 @@
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtCPFCli = new System.Windows.Forms.MaskedTextBox();
             this.txtRGCli = new System.Windows.Forms.MaskedTextBox();
-            this.txtDataNascCli = new System.Windows.Forms.MaskedTextBox();
             this.txtTelefoneCli = new System.Windows.Forms.MaskedTextBox();
             this.txtCelCliente = new System.Windows.Forms.MaskedTextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.txtDataNascCli = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -297,16 +297,6 @@
             this.txtRGCli.Size = new System.Drawing.Size(137, 27);
             this.txtRGCli.TabIndex = 3;
             // 
-            // txtDataNascCli
-            // 
-            this.txtDataNascCli.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataNascCli.Location = new System.Drawing.Point(244, 160);
-            this.txtDataNascCli.Mask = "00 /00 / 0000";
-            this.txtDataNascCli.Name = "txtDataNascCli";
-            this.txtDataNascCli.Size = new System.Drawing.Size(112, 27);
-            this.txtDataNascCli.TabIndex = 4;
-            this.txtDataNascCli.ValidatingType = typeof(System.DateTime);
-            // 
             // txtTelefoneCli
             // 
             this.txtTelefoneCli.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -345,16 +335,25 @@
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // txtDataNascCli
+            // 
+            this.txtDataNascCli.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.txtDataNascCli.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txtDataNascCli.Location = new System.Drawing.Point(244, 163);
+            this.txtDataNascCli.Name = "txtDataNascCli";
+            this.txtDataNascCli.Size = new System.Drawing.Size(124, 27);
+            this.txtDataNascCli.TabIndex = 56;
+            // 
             // FrmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 496);
+            this.Controls.Add(this.txtDataNascCli);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtCelCliente);
             this.Controls.Add(this.txtTelefoneCli);
-            this.Controls.Add(this.txtDataNascCli);
             this.Controls.Add(this.txtRGCli);
             this.Controls.Add(this.txtCPFCli);
             this.Controls.Add(this.txtEmailCli);
@@ -397,11 +396,11 @@
             this.Controls.SetChildIndex(this.txtEmailCli, 0);
             this.Controls.SetChildIndex(this.txtCPFCli, 0);
             this.Controls.SetChildIndex(this.txtRGCli, 0);
-            this.Controls.SetChildIndex(this.txtDataNascCli, 0);
             this.Controls.SetChildIndex(this.txtTelefoneCli, 0);
             this.Controls.SetChildIndex(this.txtCelCliente, 0);
             this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.Controls.SetChildIndex(this.btnVoltar, 0);
+            this.Controls.SetChildIndex(this.txtDataNascCli, 0);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -429,12 +428,12 @@
         public System.Windows.Forms.Label lblEmail;
         public System.Windows.Forms.MaskedTextBox txtCPFCli;
         public System.Windows.Forms.MaskedTextBox txtRGCli;
-        public System.Windows.Forms.MaskedTextBox txtDataNascCli;
         public System.Windows.Forms.MaskedTextBox txtTelefoneCli;
         public System.Windows.Forms.MaskedTextBox txtCelCliente;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnVoltar;
+        public System.Windows.Forms.DateTimePicker txtDataNascCli;
     }
 }
 

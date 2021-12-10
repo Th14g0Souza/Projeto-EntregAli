@@ -52,10 +52,43 @@ namespace prjEntregAli
 
         private void CadastrarCliente()
         {
-            dt = new DataTable();
-            con = new ClasseConexao();
-            dt = con.executa_sql("insert into tblCliente values ('" + txtNomeCli.Text + "', '" + txtCPFCli.Text + "', '" + txtRGCli.Text + "', '" + txtTelefoneCli.Text + "', '" + txtCelCliente.Text + "', '" + txtDataNascCli.Text + "', '" + txtEmailCli.Text + "', '" + txtEndCli.Text + "', '" + txtBairroCli.Text + "', '" + txtCidadeCli.Text + "')");
-            MessageBox.Show("Cliente Cadastrado");
+            try
+            {
+                if (checarvazio() == true)
+                {
+                    throw new Exception("Favor preencher todos os campos");
+                }
+                dt = new DataTable();
+                con = new ClasseConexao();
+                dt = con.executa_sql("insert into tblCliente values ('" + txtNomeCli.Text + "', '" + txtCPFCli.Text + "', '" + txtRGCli.Text + "', '" + txtTelefoneCli.Text + "', '" + txtCelCliente.Text + "', '" + txtDataNascCli.Value.ToString("yyyyMMdd") + "', '" + txtEmailCli.Text + "', '" + txtEndCli.Text + "', '" + txtBairroCli.Text + "', '" + txtCidadeCli.Text + "')");
+                MessageBox.Show("Cliente Cadastrado");
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro no cadastro: " + erro.Message);
+            }
+        }
+
+        private bool checarvazio()
+        {
+            bool valid = true;
+            foreach (Control c in this.Controls)
+            {
+                if (c is TextBox)
+                {
+                    TextBox textBox = c as TextBox;
+                    if (textBox.Text == string.Empty)
+                    {
+                        valid = true;
+                        break;
+                    }
+                    else
+                    {
+                        valid = false;
+                    }
+                }
+            }
+            return valid;
         }
 
         private void MostrarCli(int pos)
@@ -79,7 +112,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -94,7 +127,7 @@ namespace prjEntregAli
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. " + erro);
+                MessageBox.Show("Não foi possível realizar a operação. " + erro.Message);
             }
         }
 
@@ -197,7 +230,11 @@ namespace prjEntregAli
 
         private void btnSair2_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
+                FrmEstoque est = new FrmEstoque();
+                est.Show();
+                this.Close();
+            
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)

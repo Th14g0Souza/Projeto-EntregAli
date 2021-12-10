@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFuncionario));
-            this.txtDataNascFunc = new System.Windows.Forms.MaskedTextBox();
             this.txtRGFunc = new System.Windows.Forms.MaskedTextBox();
             this.txtCPFFunc = new System.Windows.Forms.MaskedTextBox();
             this.txtNomeFunc = new System.Windows.Forms.TextBox();
@@ -60,8 +59,11 @@
             this.lblTelefoneCliente = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtDataNascFunc = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -119,15 +121,9 @@
             this.label1.Size = new System.Drawing.Size(248, 23);
             this.label1.Text = "CADASTRO FUNCIONÁRIO";
             // 
-            // txtDataNascFunc
+            // btnSair2
             // 
-            this.txtDataNascFunc.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataNascFunc.Location = new System.Drawing.Point(376, 146);
-            this.txtDataNascFunc.Mask = "00/00/0000";
-            this.txtDataNascFunc.Name = "txtDataNascFunc";
-            this.txtDataNascFunc.Size = new System.Drawing.Size(88, 26);
-            this.txtDataNascFunc.TabIndex = 71;
-            this.txtDataNascFunc.ValidatingType = typeof(System.DateTime);
+            this.btnSair2.Click += new System.EventHandler(this.btnSair2_Click);
             // 
             // txtRGFunc
             // 
@@ -386,11 +382,33 @@
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::prjEntregAli.Properties.Resources.logo1;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(72, 56);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 105;
+            this.pictureBox1.TabStop = false;
+            // 
+            // txtDataNascFunc
+            // 
+            this.txtDataNascFunc.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.txtDataNascFunc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txtDataNascFunc.Location = new System.Drawing.Point(376, 151);
+            this.txtDataNascFunc.Name = "txtDataNascFunc";
+            this.txtDataNascFunc.Size = new System.Drawing.Size(119, 26);
+            this.txtDataNascFunc.TabIndex = 106;
+            this.txtDataNascFunc.Value = new System.DateTime(2021, 12, 1, 0, 0, 0, 0);
+            // 
             // FrmFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 496);
+            this.Controls.Add(this.txtDataNascFunc);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.txtCelFunc);
             this.Controls.Add(this.txtTelFunc);
@@ -412,7 +430,6 @@
             this.Controls.Add(this.lblSenha);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.lblIdPermissao);
-            this.Controls.Add(this.txtDataNascFunc);
             this.Controls.Add(this.txtRGFunc);
             this.Controls.Add(this.txtCPFFunc);
             this.Controls.Add(this.txtNomeFunc);
@@ -435,7 +452,6 @@
             this.Controls.SetChildIndex(this.txtNomeFunc, 0);
             this.Controls.SetChildIndex(this.txtCPFFunc, 0);
             this.Controls.SetChildIndex(this.txtRGFunc, 0);
-            this.Controls.SetChildIndex(this.txtDataNascFunc, 0);
             this.Controls.SetChildIndex(this.lblIdPermissao, 0);
             this.Controls.SetChildIndex(this.lblUsuario, 0);
             this.Controls.SetChildIndex(this.lblSenha, 0);
@@ -457,15 +473,17 @@
             this.Controls.SetChildIndex(this.txtTelFunc, 0);
             this.Controls.SetChildIndex(this.txtCelFunc, 0);
             this.Controls.SetChildIndex(this.btnVoltar, 0);
+            this.Controls.SetChildIndex(this.pictureBox1, 0);
+            this.Controls.SetChildIndex(this.txtDataNascFunc, 0);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        public System.Windows.Forms.MaskedTextBox txtDataNascFunc;
         public System.Windows.Forms.MaskedTextBox txtRGFunc;
         public System.Windows.Forms.MaskedTextBox txtCPFFunc;
         public System.Windows.Forms.TextBox txtNomeFunc;
@@ -495,5 +513,7 @@
         public System.Windows.Forms.Label lblTelefoneCliente;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.DateTimePicker txtDataNascFunc;
     }
 }

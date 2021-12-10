@@ -11,6 +11,7 @@ using System.Web;
 using Microsoft.SqlServer.Server;
 using System.IO;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace prjEntregAli
 {
@@ -38,7 +39,9 @@ namespace prjEntregAli
         { // MICROSOFT | TROCA TAB POR ENTER
             if (keyData == Keys.Enter)
             {
-                this.ProcessTabKey(true);
+                //this.ProcessTabKey(true);
+                //return true;
+                btnEntrar_Click(new object(), new EventArgs());
                 return true;
             }
             else
@@ -80,7 +83,7 @@ namespace prjEntregAli
 
             catch (Exception erro)
             {
-                MessageBox.Show("Não foi possível realizar a operação. Erro: "+erro);
+                MessageBox.Show("Não foi possível realizar a operação. Erro: "+erro.Message);
             }
 
         }
@@ -93,54 +96,12 @@ namespace prjEntregAli
         private void Login_Load(object sender, EventArgs e)
         {
             try
-            {
-                string sqlConnectionString = @"Trusted_Connection=yes;Persist Security Info=False;Initial Catalog=Master;Data Source=.\sqlexpress";
-
-                //string script = File.ReadAllText(@"C:\\Users\\"+Environment.UserName+ "\\Desktop\\EntregAli_V2\\Application Files\\prjEntregAli_1_0_0_17\\EntregAliDB.sql.deploy");
-                string script = File.ReadAllText(@"C:\\Program Files\\EntregAli_V2\\Application Files\\prjEntregAli_1_0_0_34\\EntregAliDB.sql.deploy",System.Text.Encoding.GetEncoding("iso-8859-1"));
-
-                //string script = File.ReadAllText(@"C:\Users\THIAG\Desktop\prjEntregAli_v2\prjEntregAli\EntregAliDB.sql",System.Text.Encoding.GetEncoding("iso-8859-1"));
-
-
-                SqlConnection conn = new SqlConnection(sqlConnectionString);
-
-                SqlCommand command = new SqlCommand("SET NOCOUNT Off", conn);
-                command.Connection.Open();
-                command = new SqlCommand("SELECT * FROM master.dbo.sysdatabases where name = 'EntregAliDB2'", conn);
-
-                //conn.ChangeDatabase("master");
-
-                var exists = command.ExecuteScalar();
-
-                if (exists == null)
-                {
-                    command = new SqlCommand("create database EntregAliDB2", conn);
-                    command.ExecuteScalar();
-
-                    command = new SqlCommand("use EntregAliDB2", conn);
-                    command.ExecuteScalar();
-
-                    command = new SqlCommand(script, conn);
-                    command.ExecuteScalar();
-
-                    MessageBox.Show("Banco carregado");
-                }
-                else
-                {
-                    MessageBox.Show("Banco já existente");
-                }
-            } 
+            { 
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);     
+            }
             catch (Exception erro)
-            {
-                if (erro.Message.StartsWith("Erro de rede"))
-                {
-                    MessageBox.Show("Erro de conexão ao banco");
-
-                }
-                else
-                {
-                    MessageBox.Show("Erro: " + erro);
-                }
+            {     
+                    MessageBox.Show("Erro no login: " + erro.Message);
             }
 
         }

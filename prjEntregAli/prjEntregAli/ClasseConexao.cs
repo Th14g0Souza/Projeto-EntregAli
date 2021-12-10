@@ -10,24 +10,21 @@ using System.Windows.Forms;
 
 class ClasseConexao
 {
+    SqlConnection conexao = new SqlConnection();
 
-    SqlConnection conexao = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
+    //(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
     // pega a string da app.config
     private SqlConnection conectar()
     {
         try
         {
-            //String strConexao = "Password=12345; Persist Security Info=True; User ID=sa; Initial Catalog=PetLabDB; Data Source=" + Environment.MachineName + "\\SQLSERVER01";
-
-            //String strConexao = "Password=12345; Persist Security Info=True; User ID=aluno; Initial Catalog=PetLabDB; Data Source=" + Environment.MachineName + "\\SQLSERVER01";
-            //String strConexao = "Server=15.0.2080.9;Initial Catalog=EntregAliDB;Password=ths2409; User ID=thsouza; Integrated Security=True;Connect Timeout=20;Data Source=" + Environment.MachineName; //+ "\\SQLEXPRESS";
-            //conexao.ConnectionString = strConexao;
+            conexao.ConnectionString = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
             conexao.Open();
             return conexao;
         }
         catch (Exception erro)
         {
-            MessageBox.Show("Erro de conexão com banco de dados");
+            MessageBox.Show("Erro de conexão com banco de dados: " + erro.Message);
             desconectar();
             return null;
         }
@@ -44,7 +41,9 @@ class ClasseConexao
                 conexao = null;
             }
         }
-        catch (Exception erro) { }
+        catch (Exception erro) {
+            throw erro;
+        }
     }
 
     public DataTable executa_sql(String comando_sql)
@@ -56,7 +55,7 @@ class ClasseConexao
             DataSet ds = new DataSet();
             adaptador.Fill(ds);
             if (comando_sql.StartsWith("insert"))
-            {
+           {
                 //throw new Exception("Não houve retorno de saída da instância SQL(insert)");
                 return null;
                 //return "No output was returned from the SQL instance."
@@ -66,15 +65,21 @@ class ClasseConexao
                 //throw new Exception("Não houve retorno de saída da instância SQL(update)");
                 return null;
             }
+            else if (comando_sql.StartsWith("delete"))
+            {
+                //throw new Exception("Não houve retorno de saída da instância SQL(delete)");
+                return null;
+            }
+
             else
             {
                 return ds.Tables[0];
             }
         }
-        catch
+            catch (SqlException erro)
         {            
-            //MessageBox.Show("Atenção: " + erro);
-            return null;
+            //MessageBox.Show("Atenção: " + erro.Message);
+            throw erro;
         }
         finally
         {

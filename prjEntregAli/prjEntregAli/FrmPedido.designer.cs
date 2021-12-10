@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPedido));
             this.lblStatusPedido = new System.Windows.Forms.Label();
-            this.txtDataEntrega = new System.Windows.Forms.MaskedTextBox();
-            this.txtDataPed = new System.Windows.Forms.MaskedTextBox();
             this.lblDataEntrega = new System.Windows.Forms.Label();
             this.DataPed = new System.Windows.Forms.Label();
             this.lblIdFuncPed = new System.Windows.Forms.Label();
@@ -47,9 +45,13 @@
             this.btnVoltar = new System.Windows.Forms.Button();
             this.txtIdCliPed = new System.Windows.Forms.ComboBox();
             this.txtIdFuncPed = new System.Windows.Forms.ComboBox();
+            this.txtDataPed = new System.Windows.Forms.DateTimePicker();
+            this.txtDataEntrega = new System.Windows.Forms.DateTimePicker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataProduto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -121,26 +123,6 @@
             this.lblStatusPedido.TabIndex = 40;
             this.lblStatusPedido.Text = "Status:";
             // 
-            // txtDataEntrega
-            // 
-            this.txtDataEntrega.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataEntrega.Location = new System.Drawing.Point(422, 192);
-            this.txtDataEntrega.Mask = "00/00/0000";
-            this.txtDataEntrega.Name = "txtDataEntrega";
-            this.txtDataEntrega.Size = new System.Drawing.Size(100, 24);
-            this.txtDataEntrega.TabIndex = 39;
-            this.txtDataEntrega.ValidatingType = typeof(System.DateTime);
-            // 
-            // txtDataPed
-            // 
-            this.txtDataPed.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataPed.Location = new System.Drawing.Point(422, 147);
-            this.txtDataPed.Mask = "00/00/0000";
-            this.txtDataPed.Name = "txtDataPed";
-            this.txtDataPed.Size = new System.Drawing.Size(100, 24);
-            this.txtDataPed.TabIndex = 38;
-            this.txtDataPed.ValidatingType = typeof(System.DateTime);
-            // 
             // lblDataEntrega
             // 
             this.lblDataEntrega.AutoSize = true;
@@ -189,6 +171,7 @@
             this.dataProduto.Size = new System.Drawing.Size(270, 245);
             this.dataProduto.TabIndex = 44;
             this.toolTip1.SetToolTip(this.dataProduto, "Produtos selecionados");
+            this.dataProduto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataProduto_CellDoubleClick);
             // 
             // btnAddMat
             // 
@@ -275,11 +258,41 @@
             this.txtIdFuncPed.TabIndex = 56;
             this.txtIdFuncPed.SelectedIndexChanged += new System.EventHandler(this.txtIdFuncPed_SelectedIndexChanged);
             // 
+            // txtDataPed
+            // 
+            this.txtDataPed.CustomFormat = "dd MM yyyy";
+            this.txtDataPed.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txtDataPed.Location = new System.Drawing.Point(422, 149);
+            this.txtDataPed.Name = "txtDataPed";
+            this.txtDataPed.Size = new System.Drawing.Size(100, 20);
+            this.txtDataPed.TabIndex = 57;
+            // 
+            // txtDataEntrega
+            // 
+            this.txtDataEntrega.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txtDataEntrega.Location = new System.Drawing.Point(422, 196);
+            this.txtDataEntrega.Name = "txtDataEntrega";
+            this.txtDataEntrega.Size = new System.Drawing.Size(100, 20);
+            this.txtDataEntrega.TabIndex = 58;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::prjEntregAli.Properties.Resources.logo1;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(72, 56);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 79;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 496);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.txtDataEntrega);
+            this.Controls.Add(this.txtDataPed);
             this.Controls.Add(this.txtIdFuncPed);
             this.Controls.Add(this.txtIdCliPed);
             this.Controls.Add(this.btnVoltar);
@@ -290,8 +303,6 @@
             this.Controls.Add(this.dataProduto);
             this.Controls.Add(this.btnAddMat);
             this.Controls.Add(this.lblStatusPedido);
-            this.Controls.Add(this.txtDataEntrega);
-            this.Controls.Add(this.txtDataPed);
             this.Controls.Add(this.lblDataEntrega);
             this.Controls.Add(this.DataPed);
             this.Controls.Add(this.lblIdFuncPed);
@@ -307,8 +318,6 @@
             this.Controls.SetChildIndex(this.lblIdFuncPed, 0);
             this.Controls.SetChildIndex(this.DataPed, 0);
             this.Controls.SetChildIndex(this.lblDataEntrega, 0);
-            this.Controls.SetChildIndex(this.txtDataPed, 0);
-            this.Controls.SetChildIndex(this.txtDataEntrega, 0);
             this.Controls.SetChildIndex(this.lblStatusPedido, 0);
             this.Controls.SetChildIndex(this.btnAddMat, 0);
             this.Controls.SetChildIndex(this.dataProduto, 0);
@@ -323,9 +332,13 @@
             this.Controls.SetChildIndex(this.btnVoltar, 0);
             this.Controls.SetChildIndex(this.txtIdCliPed, 0);
             this.Controls.SetChildIndex(this.txtIdFuncPed, 0);
+            this.Controls.SetChildIndex(this.txtDataPed, 0);
+            this.Controls.SetChildIndex(this.txtDataEntrega, 0);
+            this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataProduto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,8 +346,6 @@
 
         #endregion
         private System.Windows.Forms.Label lblStatusPedido;
-        public System.Windows.Forms.MaskedTextBox txtDataEntrega;
-        public System.Windows.Forms.MaskedTextBox txtDataPed;
         private System.Windows.Forms.Label lblDataEntrega;
         private System.Windows.Forms.Label DataPed;
         private System.Windows.Forms.Label lblIdFuncPed;
@@ -349,5 +360,8 @@
         private System.Windows.Forms.Button btnVoltar;
         public System.Windows.Forms.ComboBox txtIdCliPed;
         public System.Windows.Forms.ComboBox txtIdFuncPed;
+        public System.Windows.Forms.DateTimePicker txtDataPed;
+        public System.Windows.Forms.DateTimePicker txtDataEntrega;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
